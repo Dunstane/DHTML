@@ -53,62 +53,28 @@ function loop(timestamp) {
 
 function move()
 {
+	car1Beta = (Math.PI / 2) - car1Rotation;
 	if(up == true && down == false)
 	{
-		car1DirectionVector[0] += Math.sin(car1Rotation) * 0.09;
-		car1DirectionVector[1] += Math.sin(car1Beta) * 0.09;
+		car1DirectionVector[0] = Math.sin(car1Rotation - 90) * 0.1;
+		car1DirectionVector[1] = Math.sin(car1Beta) * 0.1;
 	}
 	if(down == true && up == false)
 	{
-		car1DirectionVector[0] += Math.sin(car1Rotation) * 0.09;
-		car1DirectionVector[1] += Math.sin(car1Beta) * 0.09;
+		car1DirectionVector[0] = Math.sin(car1Rotation - 90) * -0.1;
+		car1DirectionVector[1] = Math.sin(car1Beta) * -0.1;
 	}
 	if(left == true && right == false)
 	{
-		car1Rotation += 0.1;
+		car1Rotation += 0.07;
 	}
 	if(right == true && left == false)
 	{
-		car1Rotation -= 0.1;
+		car1Rotation -= 0.07;
 	}
 
-	if(car1X >= 50 && car1X <= 950)
-	{
-		car1X += car1DirectionVector[0];
-	}
-	else
-	{
-		car1DirectionVector[0] = 0
-		car1DirectionVector[1] = 0
-
-		if(car1X <= 50)
-		{
-			car1X = 30;
-		}
-		if(car1YX>= 950)
-		{
-			car1X = 920;
-		}
-	}
-
-	if(car1Y >= 50 && car1Y <= 550)
-	{
-		car1Y -= car1DirectionVector[1];
-	}
-	else
-	{
-		car1DirectionVector[0] = 0
-		car1DirectionVector[1] = 0
-
-		if(car1Y <= 50)
-		{
-			car1Y = 51;
-		}
-		if(car1Y >= 550)
-		{
-			car1Y = 549;
-		}
-	}
+	car1X += car1DirectionVector[0];
+	car1Y -= car1DirectionVector[1];
 }
 
 function draw() 
