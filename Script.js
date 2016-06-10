@@ -13,15 +13,15 @@ var car1DirectionVector;
 var car1Beta = 0;
 
 //car two coords
-var car2X = 1000;
-var car2Y = 600;
-var car2Rotation = 180;
+var car2X = 800;
+var car2Y = 500;
+var car2Rotation = 270;
 var car2DirectionVector;
 var car2Beta = 0;
 
 //car length and height variables
-var carLength = 96;
-var carHeight = 80;
+var carLength = 53;
+var carHeight = 90;
 
 //key events
 var up = false;
@@ -54,27 +54,46 @@ function loop(timestamp) {
 function move()
 {
 	car1Beta = (Math.PI / 2) - car1Rotation;
+
 	if(up == true && down == false)
 	{
-		car1DirectionVector[0] = Math.sin(car1Rotation - 90) * 0.1;
-		car1DirectionVector[1] = Math.sin(car1Beta) * 0.1;
-	}
-	if(down == true && up == false)
-	{
-		car1DirectionVector[0] = Math.sin(car1Rotation - 90) * -0.1;
-		car1DirectionVector[1] = Math.sin(car1Beta) * -0.1;
-	}
-	if(left == true && right == false)
-	{
-		car1Rotation += 0.07;
-	}
-	if(right == true && left == false)
-	{
-		car1Rotation -= 0.07;
+		car1DirectionVector[0] = Math.sin(car1Rotation) * 4;
+		car1DirectionVector[1] = Math.sin(car1Beta) * 4;
 	}
 
-	car1X += car1DirectionVector[0];
-	car1Y -= car1DirectionVector[1];
+	if(down == true && up == false)
+	{
+		car1DirectionVector[0] = Math.sin(car1Rotation) * -4;
+		car1DirectionVector[1] = Math.sin(car1Beta) * -4;
+	}
+
+	if (up == false && down == false)
+	{
+		car1DirectionVector[0] = 0;
+		car1DirectionVector[1] = 0;
+	}
+
+	if(left == true && right == false)
+	{
+		car1Rotation -= 0.05;
+	}
+
+	if(right == true && left == false)
+	{
+		car1Rotation += 0.05;
+	}
+
+	if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
+	{
+		car1X += car1DirectionVector[0];
+		console.log((car1X + car1DirectionVector[0]))
+		console.log((1000 + car1DirectionVector[0]))
+	}
+	
+	if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
+	{
+		car1Y -= car1DirectionVector[1];
+	}
 }
 
 function draw() 
@@ -93,7 +112,7 @@ function drawCar1()
 
 	ctx.rotate(car1Rotation);
 
-	ctx.translate(-48, -40)
+	ctx.translate(-27, -45)
 
 	ctx.drawImage(car1, 0, 0, carLength, carHeight);
 
