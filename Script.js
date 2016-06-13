@@ -43,6 +43,7 @@ function setup()
 	$(document).keydown(keydownHandler);
  	$(document).keyup(keyupHandler);
  	car1DirectionVector = [0, 0];
+ 	car2DirectionVector = [0, 0];
 }
 
 function loop(timestamp) {
@@ -54,6 +55,9 @@ function loop(timestamp) {
 function move()
 {
 	car1Beta = (Math.PI / 2) - car1Rotation;
+	car2Beta = (Math.PI / 2) - car2Rotation;
+	car2DirectionVector[0] = Math.sin(car2Rotation);
+	car2DirectionVector[1] = Math.sin(car2Rotation);
 
 	if(up == true && down == false)
 	{
@@ -73,6 +77,12 @@ function move()
 		car1DirectionVector[1] = 0;
 	}
 
+	if (up == true && down == true)
+	{
+		car1DirectionVector[0] = 0;
+		car1DirectionVector[1] = 0;
+	}
+
 	if(left == true && right == false)
 	{
 		car1Rotation -= 0.05;
@@ -83,16 +93,20 @@ function move()
 		car1Rotation += 0.05;
 	}
 
-	if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
+	if ((car1Y - car1DirectionVector[1]) > (car2Y - car2DirectionVector[1]) || (car1Y - car1DirectionVector[1]) < ((car2Y - carHeight) - car2DirectionVector[1]))
 	{
-		car1X += car1DirectionVector[0];
-		console.log((car1X + car1DirectionVector[0]))
-		console.log((1000 + car1DirectionVector[0]))
-	}
-	
-	if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
-	{
-		car1Y -= car1DirectionVector[1];
+		if ((car1X + car1DirectionVector[0]) < (car2X + car2DirectionVector[0]) || (car1X + car1DirectionVector[0]) > ((car2X + carLength) + car2DirectionVector[0]))
+		{
+			if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
+			{
+				car1X += car1DirectionVector[0];
+			}
+			
+			if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
+			{
+				car1Y -= car1DirectionVector[1];
+			}
+		}
 	}
 }
 
@@ -122,14 +136,16 @@ function drawCar1()
 function drawCar2()
 {
 	ctx.save();
-
+	
 	ctx.translate(car2X, car2Y);
 
-	ctx.rotate(car2Rotation * Math.PI / 180);
+	ctx.rotate(car2Rotation);
+
+	ctx.translate(-27, -45)
 
 	ctx.drawImage(car2, 0, 0, carLength, carHeight);
 
-	ctx.restore();	
+	ctx.restore();
 }
 
 //movement keys down
