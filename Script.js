@@ -93,19 +93,21 @@ function move()
 		car1Rotation += 0.05;
 	}
 
-	if ((car1Y - car1DirectionVector[1]) > (car2Y - car2DirectionVector[1]) || (car1Y - car1DirectionVector[1]) < ((car2Y - carHeight) - car2DirectionVector[1]))
+	if((car1X + car1DirectionVector[0]) > (car2X + car2DirectionVector[0]) && (car1X + car1DirectionVector[0]) < ((car2X + carLength) + car2DirectionVector[0]) 
+		 && (car1Y - car1DirectionVector[1]) > (car2Y - car2DirectionVector[1]) && (car1Y - car1DirectionVector[1]) < ((car2Y + carHeight) - car2DirectionVector[1]))
 	{
-		if ((car1X + car1DirectionVector[0]) < (car2X + car2DirectionVector[0]) || (car1X + car1DirectionVector[0]) > ((car2X + carLength) + car2DirectionVector[0]))
+		console.log("collision");
+	}
+	else
+	{
+		if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
 		{
-			if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
-			{
-				car1X += car1DirectionVector[0];
-			}
+			car1X += car1DirectionVector[0];
+		}
 			
-			if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
-			{
-				car1Y -= car1DirectionVector[1];
-			}
+		if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
+		{
+			car1Y -= car1DirectionVector[1];
 		}
 	}
 }
