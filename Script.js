@@ -61,14 +61,14 @@ function move()
 
 	if(up == true && down == false)
 	{
-		car1DirectionVector[0] = Math.sin(car1Rotation) * 4;
-		car1DirectionVector[1] = Math.sin(car1Beta) * 4;
+		car1DirectionVector[0] = Math.sin(car1Rotation) * 7;
+		car1DirectionVector[1] = Math.sin(car1Beta) * 7;
 	}
 
 	if(down == true && up == false)
 	{
-		car1DirectionVector[0] = Math.sin(car1Rotation) * -4;
-		car1DirectionVector[1] = Math.sin(car1Beta) * -4;
+		car1DirectionVector[0] = Math.sin(car1Rotation) * -7;
+		car1DirectionVector[1] = Math.sin(car1Beta) * -7;
 	}
 
 	if (up == false && down == false)
@@ -85,16 +85,17 @@ function move()
 
 	if(left == true && right == false)
 	{
-		car1Rotation -= 0.05;
+		car1Rotation -= 0.07;
 	}
 
 	if(right == true && left == false)
 	{
-		car1Rotation += 0.05;
+		car1Rotation += 0.07;
 	}
 
-	if((car1X + car1DirectionVector[0]) > (car2X + car2DirectionVector[0]) && (car1X + car1DirectionVector[0]) < ((car2X + carLength) + car2DirectionVector[0]) 
-		 && (car1Y - car1DirectionVector[1]) > (car2Y - car2DirectionVector[1]) && (car1Y - car1DirectionVector[1]) < ((car2Y + carHeight) - car2DirectionVector[1]))
+	var carDiagonalDistance = Math.sqrt((Math.pow((car2X - car1X), 2)) + Math.pow((car2Y - car1Y), 2))
+
+	if(carDiagonalDistance <= carHeight)
 	{
 		console.log("collision");
 	}
