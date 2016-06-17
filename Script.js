@@ -47,9 +47,40 @@ function setup()
 }
 
 function loop(timestamp) {
+	car_collisiondetect();
 	move();
 	draw();
 	window.requestAnimationFrame(loop); // loop again
+}
+
+function car_collisiondetect()
+{
+	var carDiagonalDistance = Math.sqrt((Math.pow((car2X - car1X), 2)) + Math.pow((car2Y - car1Y), 2))
+
+	if(carDiagonalDistance <= carHeight)
+	{
+		console.log("collision");
+	}
+	else
+	{
+		if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
+		{
+			car1X += car1DirectionVector[0];
+			console.log("Wall hit!");
+		}
+			
+		if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
+		{
+			car1Y -= car1DirectionVector[1];
+			console.log("Wall hit!");
+		}
+	}
+}
+
+function pushback()
+{
+	//push both cars away from eachother
+	
 }
 
 function move()
@@ -93,24 +124,7 @@ function move()
 		car1Rotation += 0.07;
 	}
 
-	var carDiagonalDistance = Math.sqrt((Math.pow((car2X - car1X), 2)) + Math.pow((car2Y - car1Y), 2))
 
-	if(carDiagonalDistance <= carHeight)
-	{
-		console.log("collision");
-	}
-	else
-	{
-		if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
-		{
-			car1X += car1DirectionVector[0];
-		}
-			
-		if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
-		{
-			car1Y -= car1DirectionVector[1];
-		}
-	}
 }
 
 function draw() 
