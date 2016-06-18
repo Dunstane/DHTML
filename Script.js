@@ -5,47 +5,50 @@ var ctx;
 var car1 = new Image();
 var car2 = new Image();
 
-//car one coords
-var car1X = 100;
-var car1Y = 100;
-var car1Rotation = 0;
-var car1DirectionVector;
+//car1 veriables
+var car1X = 100; //xCoord 
+var car1Y = 100; //yCoord
+var car1Rotation = 0; //rotation in degrees
+var car1DirectionVector; //direction the car is moving in
 var car1Beta = 0;
 
 //car two coords
-var car2X = 800;
-var car2Y = 500;
-var car2Rotation = 270;
-var car2DirectionVector;
+var car2X = 800; //xCoord
+var car2Y = 500; //yCoord
+var car2Rotation = 270; //rotation in degrees
+var car2DirectionVector; //direction the car is moving in
 var car2Beta = 0;
 
 //car length and height variables
-var carLength = 53;
-var carHeight = 90;
+var carLength = 53; //car length in pixels
+var carHeight = 90; //car height in pixels
 
 //key events
-var up = false;
-var down = false;
-var right = false;
-var left = false;
+var up = false; //set to true when W is pressed
+var down = false; //set to true when S is pressed
+var right = false; //set to true when D is pressed
+var left = false; //set to true when A is pressed
 
+//runs when page is fully loaded
 $(document).ready(function()  
 {
-	setup();
-	loop();
+	setup(); //setting up the initial
+	loop(); //starting the game loop
 }); 
 
+//setting up the original game should only be run ones per game
 function setup() 
 {
-	ctx = $('#canvas')[0].getContext("2d");
-	car1.src = "res/car1.svg";
-	car2.src = "res/car2.svg";
-	$(document).keydown(keydownHandler);
- 	$(document).keyup(keyupHandler);
- 	car1DirectionVector = [0, 0];
- 	car2DirectionVector = [0, 0];
+	ctx = $('#canvas')[0].getContext("2d"); //assigning the canvas to a veriable
+	car1.src = "res/car1.svg"; //setting the source file for the car1 image
+	car2.src = "res/car2.svg"; //setting the source file for the car2 image
+	$(document).keydown(keydownHandler); //setting up keydown handler
+ 	$(document).keyup(keyupHandler); //setting up keyup handler
+ 	car1DirectionVector = [0, 0]; //setting the car1 direction vector to 0
+ 	car2DirectionVector = [0, 0]; //setting the car2 direction vector to 0
 }
 
+<<<<<<< HEAD
 function loop(timestamp) {
 		car1_collisiondetect();
 	car2_collisiondetect();
@@ -54,6 +57,13 @@ function loop(timestamp) {
 	walldetect();
 	move();
 	draw();
+=======
+function loop(timestamp) 
+{
+	car_collisiondetect(); //check if the car is colliding with the walls or the other car
+	move(); //move the car
+	draw(); //draw out everything to the screen
+>>>>>>> origin/master
 	window.requestAnimationFrame(loop); // loop again
 }
 
