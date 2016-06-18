@@ -1,3 +1,4 @@
+ var socket = io.connect('http://localhost:3000');
 //canvas variable
 var ctx;
 
@@ -29,6 +30,14 @@ var down = false; //set to true when S is pressed
 var right = false; //set to true when D is pressed
 var left = false; //set to true when A is pressed
 
+
+
+
+
+///TODO
+//Clean up the client server interaction code
+//a lot of movement data is handled by the server, may just need to say that a move event occured and send it to the server.
+
 //runs when page is fully loaded
 $(document).ready(function()  
 {
@@ -40,6 +49,9 @@ $(document).ready(function()
 function setup() 
 {
 	//put io connect here, also assign both car variables from a emit on the server
+	//assign can maybe be the update?
+	
+	
 	ctx = $('#canvas')[0].getContext("2d"); //assigning the canvas to a veriable
 	car1.src = "res/car1.svg"; //setting the source file for the car1 image
 	car2.src = "res/car2.svg"; //setting the source file for the car2 image
@@ -60,6 +72,7 @@ function loop(timestamp) //check if the car is colliding with the walls or the o
 	walldetect();
 	move(); //move the car
 	draw(); //draw out everything to the screen
+	//call socketupdate
 	window.requestAnimationFrame(loop); // loop again
 }
 
@@ -256,6 +269,16 @@ function drawCar2()
 	ctx.drawImage(car2, 0, 0, carLength, carHeight);
 
 	ctx.restore();
+}
+
+function reset()
+{
+	
+	this.car1X=100;
+	this.car1Y=500;
+	this.car2X=800;
+	this.car2Y=500;
+	//socket update here
 }
 
 //movement keys down
