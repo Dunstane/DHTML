@@ -47,33 +47,119 @@ function setup()
 }
 
 function loop(timestamp) {
-	car_collisiondetect();
+		car1_collisiondetect();
+	car2_collisiondetect();
+
+	
+	walldetect();
 	move();
 	draw();
 	window.requestAnimationFrame(loop); // loop again
 }
 
-function car_collisiondetect()
+function walldetect()
 {
-	var carDiagonalDistance = Math.sqrt((Math.pow((car2X - car1X), 2)) + Math.pow((car2Y - car1Y), 2))
-
-	if(carDiagonalDistance <= carHeight)
-	{
-		console.log("collision");
-	}
-	else
-	{
 		if ((car1X + car1DirectionVector[0]) < 950 && (car1X + car1DirectionVector[0]) > 50)
 		{
 			car1X += car1DirectionVector[0];
-			console.log("Wall hit!");
+			
 		}
+		else{console.log("Wall hit!");}
 			
 		if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
 		{
 			car1Y -= car1DirectionVector[1];
-			console.log("Wall hit!");
+			
 		}
+		else{console.log("Wall hit!");}
+	
+}
+
+function car1_collisiondetect()		//only works for car 1
+{
+	var carDiagonalDistance = Math.sqrt((Math.pow((car2X - car1X), 2)) + Math.pow((car2Y - car1Y), 2))
+
+	//car to car collision check for car 1
+	if(carDiagonalDistance <= carHeight)
+	{
+		
+		console.log("collision car 1 called");
+	    if(car1X	<	car2X)			//x checks
+		{
+			car1X-=5;
+			car2X+=5;
+			if(car1Y<car2Y)
+			{
+				car2Y+=2;
+				
+			}
+			else(car1Y>car2Y)
+			{
+				car2Y-=2;
+			}
+		}
+		else
+		{
+			car2X-=5;
+			car1X+=5;
+				if(car1Y<car2Y)
+			{
+				car2Y+=2;
+				
+			}
+			else(car1Y>car2Y)
+			{
+				car2Y-=2;
+			}
+		}
+	}
+	else
+	{
+	
+	}
+}
+
+function car2_collisiondetect()		//only works for car 1
+{
+	var carDiagonalDistance = Math.sqrt((Math.pow((car2X - car1X), 2)) + Math.pow((car2Y - car1Y), 2))
+
+	//car to car collision check for car 1
+	if(carDiagonalDistance <= carHeight)
+	{
+		
+		console.log("collision car 2 called");
+	    if(car2X	<	car1X)			//x checks
+		{
+			car2X-=5;
+			car1X+=5;
+			if(car2Y<car1Y)
+			{
+				car1Y+=2;
+				
+			}
+			else(car2Y>car1Y)
+			{
+				car1Y-=2;
+			}
+		}
+		else
+		{
+			car1X-=5;
+			car2X+=5;
+				if(car2Y<car1Y)
+			{
+				car1Y+=2;
+				
+			}
+			else(car2Y>car1Y)
+			{
+				car1Y-=2;
+			}
+		}
+	}
+	else
+	{
+	
 	}
 }
 
