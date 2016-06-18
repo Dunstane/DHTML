@@ -48,22 +48,21 @@ function setup()
  	car2DirectionVector = [0, 0]; //setting the car2 direction vector to 0
 }
 
-<<<<<<< HEAD
-function loop(timestamp) {
-		car1_collisiondetect();
+function loop(timestamp) 
+{
+	car1_collisiondetect();
 	car2_collisiondetect();
-
-	
 	walldetect();
 	move();
 	draw();
-=======
+}
+
 function loop(timestamp) 
 {
-	car_collisiondetect(); //check if the car is colliding with the walls or the other car
+	car1_collisiondetect(); //check if the car is colliding with the walls or the other car
+	car2_collisiondetect(); //check if the car is colliding with the walls or the other car
 	move(); //move the car
 	draw(); //draw out everything to the screen
->>>>>>> origin/master
 	window.requestAnimationFrame(loop); // loop again
 }
 
