@@ -1,5 +1,5 @@
 
-var app = require('index.html')();			//app domain?
+var app = require('Index.html')();			//app domain?
 var http = require('http').Server(app);				
 var io = require('socket.io')(http);
 var NumberOfPlayers=0;
