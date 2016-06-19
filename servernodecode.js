@@ -1,5 +1,5 @@
 
-var app = require('Index.html')();			//app domain?
+var app = require('express')();			//app domain?
 var http = require('http').Server(app);				
 var io = require('socket.io')(http);
 var NumberOfPlayers=0;
@@ -7,8 +7,6 @@ var cars; //car entities?
 var player1loc=[100,500,0];   //x,y,rotation
 var player2loc=[800,500,0];  //x,y,rotation
 
-var room = io.sockets.adapter.rooms['my_room'];
-room.length;   // Rooms became actual types with a .length property in 1.4
  function init()
  {
  }
