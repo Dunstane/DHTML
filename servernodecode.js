@@ -1,11 +1,11 @@
 
-var app = require('express')();			//express
+var app = require('index.html')();			//app domain?
 var http = require('http').Server(app);				
 var io = require('socket.io')(http);
 var NumberOfPlayers=0;
 var cars; //car entities?
-var player1loc={100,500,0};   //x,y,rotation
-var player2loc={800,500,0};  //x,y,rotation
+var player1loc=[100,500,0];   //x,y,rotation
+var player2loc=[800,500,0];  //x,y,rotation
 
 var room = io.sockets.adapter.rooms['my_room'];
 room.length;   // Rooms became actual types with a .length property in 1.4
@@ -40,7 +40,7 @@ function assignPlayerDefault()
 
 io.sockets.on('updated', function (data) //the update serverside function, data contains player x,y values
 {
-	 data={player1loc,player2loc,};
+	 data={player1loc,player2loc};
 	 io.broadcast.emit('updated', data);
 }
 
