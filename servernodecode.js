@@ -27,7 +27,7 @@ io.sockets.on('connection', function(socket){
         socket.emit('message', 'You are connected as player' +NumberOfPlayers);  
 
 });
-io.sockets.on('collision', function(data){}	//clientside for now
+io.sockets.on('collision', function(data){})	//clientside for now
 
 io.sockets.on('disconnect', function(data)
 {
