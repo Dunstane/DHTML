@@ -27,12 +27,12 @@ io.sockets.on('connection', function(socket){
         socket.emit('message', 'You are connected as player' +NumberOfPlayers);  
 
 });
-io.sockets.on('collision', function(data){})	//clientside for now
+io.sockets.on('collision', function(data){});	//clientside for now
 
 io.sockets.on('disconnect', function(data)
 {
 	NumberOfPlayers--;
-}
+});
 
 function assignPlayerDefault()
 {
@@ -42,12 +42,13 @@ io.sockets.on('updated', function (data) //the update serverside function, data 
 {
 	 data={player1loc,player2loc};
 	 io.broadcast.emit('updated', data);
-}
+});
 
 io.sockets.on('gameReset', function (data)
 {
 	//reset the current x and y vars for both
-}
+});
+
 function check_collision() //lolno
 {
 	
