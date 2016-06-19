@@ -1,5 +1,3 @@
-var io = io.listen(app);
-
 var socket = io.connect('http://localhost:3000');
 //canvas variable
 var ctx;
