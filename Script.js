@@ -1,4 +1,4 @@
-var socket = io.connect();
+var socket = io.connect("http://localhost:8080");
 //canvas variable
 var ctx;
 
@@ -66,7 +66,7 @@ function loop(timestamp) //check if the car is colliding with the walls or the o
 {
 	//put io update here
 	//get id from socket beforehand?
-	socket.Update([car1X,car1Y,car1Rotation],[car2X,car2Y,car2Rotation]);
+	socket.emit('updated',[car1X,car1Y,car1Rotation],[car2X,car2Y,car2Rotation]);
 	car1_collisiondetect();
 	car2_collisiondetect();
 

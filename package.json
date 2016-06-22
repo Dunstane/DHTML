@@ -2,7 +2,7 @@
   "name": "socketioExample",
   "version": "0.0.1",
   "dependencies": {
-    "node-static": "0.6.x",
-    "socket.io": "0.9.x"
+    "express": "^4.10",
+    "socket.io": "^1.4.6"
   }
 }
