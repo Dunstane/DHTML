@@ -51,7 +51,8 @@ function setup()
 	//put io connect here, also assign both car variables from a emit on the server
 	//assign can maybe be the update?
 	
-	
+	console.log(io.id);
+
 	ctx = $('#canvas')[0].getContext("2d"); //assigning the canvas to a veriable
 	car1.src = "res/car1.svg"; //setting the source file for the car1 image
 	car2.src = "res/car2.svg"; //setting the source file for the car2 image
