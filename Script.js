@@ -5,7 +5,6 @@ var ctx;
 //car texture variables
 var car1 = new Image();
 var car2 = new Image();
-
 //car1 veriables
 var car1X = 100; //xCoord 
 var car1Y = 100; //yCoord
@@ -66,9 +65,18 @@ function loop(timestamp) //check if the car is colliding with the walls or the o
 {
 	//put io update here
 	//get id from socket beforehand?
-	socket.emit('updated',[car1X,car1Y,car1Rotation],[car2X,car2Y,car2Rotation]);
-	car1_collisiondetect();
-	car2_collisiondetect();
+	if(socket.id="1");
+	{
+		socket.emit('updated',[car1X,car1Y,car1Rotation],[car2X,car2Y,car2Rotation]);
+		car1_collisiondetect();
+	}
+	else
+	{
+		socket.emit('updated',[car1X,car1Y,car1Rotation],[car2X,car2Y,car2Rotation]);
+		car2_collisiondetect();
+	}
+	
+
 
 	
 	walldetect();
@@ -91,6 +99,20 @@ function walldetect()
 		if ((car1Y - car1DirectionVector[1]) < 550 && (car1Y - car1DirectionVector[1]) > 50)
 		{
 			car1Y -= car1DirectionVector[1];
+			
+		}
+		else{console.log("Wall hit!");}
+		
+		if ((car2X + car2DirectionVector[0]) < 950 && (car2X + car2DirectionVector[0]) > 50)
+		{
+			car2X += car2DirectionVector[0];
+			
+		}
+		else{console.log("Wall hit!");}
+			
+		if ((car2Y - car2DirectionVector[1]) < 550 && (car2Y - car2DirectionVector[1]) > 50)
+		{
+			car2Y -= car2DirectionVector[1];
 			
 		}
 		else{console.log("Wall hit!");}
@@ -198,6 +220,8 @@ function move()
 	car2DirectionVector[0] = Math.sin(car2Rotation);
 	car2DirectionVector[1] = Math.sin(car2Rotation);
 
+	if(socket.id="1")
+	{
 	if(up == true && down == false)
 	{
 		car1DirectionVector[0] = Math.sin(car1Rotation) * 7;
@@ -231,7 +255,43 @@ function move()
 	{
 		car1Rotation += 0.07;
 	}
+	}
+	else
+	{
+		if(up == true && down == false)
+	{
+		car2DirectionVector[0] = Math.sin(car2Rotation) * 7;
+		car2DirectionVector[1] = Math.sin(car2Beta) * 7;
+	}
 
+	if(down == true && up == false)
+	{
+		car2DirectionVector[0] = Math.sin(car2Rotation) * -7;
+		car2DirectionVector[1] = Math.sin(car2Beta) * -7;
+	}
+
+	if (up == false && down == false)
+	{
+		car2DirectionVector[0] = 0;
+		car2DirectionVector[1] = 0;
+	}
+
+	if (up == true && down == true)
+	{
+		car2DirectionVector[0] = 0;
+		car2DirectionVector[1] = 0;
+	}
+
+	if(left == true && right == false)
+	{
+		car2Rotation -= 0.07;
+	}
+
+	if(right == true && left == false)
+	{
+		car2Rotation += 0.07;
+	}
+	}
 
 }
 

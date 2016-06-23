@@ -19,7 +19,7 @@ var player2loc=[800,500,0];  //x,y,rotation
 io.on('connection', function(socket){
   console.log('Player connected');
   NumberOfPlayers++;
-  io.write('ID: '+NumberOfPlayers);
+     socket.id= NumberOfPlayers;  //0,1,2,ect
 
         socket.emit('message', 'You are connected as player' +NumberOfPlayers);  
 
@@ -30,6 +30,7 @@ io.sockets.on('disconnect', function(data)
 {
 	NumberOfPlayers--;
 });
+
 
 function assignPlayerDefault()
 {
