@@ -1,4 +1,4 @@
-var socket = io.connect("http://localhost:8080");
+var socket = io.connect("http://pigmanrocker.work:3000");
 //canvas variable
 var ctx;
 
