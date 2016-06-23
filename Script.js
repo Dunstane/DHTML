@@ -1,4 +1,5 @@
 var socket = io.connect("http://pigmanrocker.work:3000");
+console.log(socket.id);
 //canvas variable
 var ctx;
 
@@ -69,6 +70,7 @@ function loop(timestamp) //check if the car is colliding with the walls or the o
 	{
 		socket.emit('updated',[car1X,car1Y,car1Rotation],[car2X,car2Y,car2Rotation]);
 		car1_collisiondetect();
+		
 	}
 	else
 	{

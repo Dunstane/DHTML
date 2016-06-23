@@ -28,6 +28,8 @@ io.sockets.on('collision', function(data){});	//clientside for now
 
 io.sockets.on('disconnect', function(data)
 {
+	  console.log('Player DC'); 
+
 	NumberOfPlayers--;
 });
 
@@ -38,7 +40,12 @@ function assignPlayerDefault()
 
 io.sockets.on('updated', function (data) //the update serverside function, data contains player x,y values
 {
-	 data={player1loc,player2loc};
+	player1loc=data[0];
+	player2loc=data[1];
+	console.log(data);
+	
+	data={player1loc,player2loc};
+	
 	 io.broadcast.emit('updated', data);
 });
 
